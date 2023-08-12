@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -6,7 +8,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://sv30092001:1ZwtgjJUwXM0tmtG@cluster0.kfsqlg4.mongodb.net/?retryWrites=true&w=majority").then(function () {
+mongoose.connect(process.env.MONGO_URL).then(function () {
 
     app.get("/", function (req, res) {
         const response={message:"API works!"}
